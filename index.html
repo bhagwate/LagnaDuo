@@ -1,0 +1,349 @@
+<!--
+LagnaDuo Landing Page HTML (single-file)
+Usage: Replace CASHFREE_LINK and PAYPAL_LINK with your payment URLs.
+Author: ChatGPT (GPT-5 Thinking mini)
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LagnaDuo — Shared Future Scorecard</title>
+  <meta name="description" content="LagnaDuo: A modern Vedic astrology scorecard that reveals whether two people can truly live together — beyond compatibility." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #fcfbf9;
+      --card: #ffffff;
+      --accent: #7c5cff;
+      --accent-2: #f59e0b;
+      --muted: #6b7280;
+      --text: #0f172a;
+      --shadow: 0 8px 30px rgba(16,24,40,0.06);
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,var(--bg),#fbf7ff);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    .container{max-width:var(--max-width);padding:28px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#b794f4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:Merriweather}
+    .site-title{font-weight:700;font-family:Merriweather}
+    .nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:var(--shadow);border:0}
+    .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 12px;border-radius:8px}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
+    .hero-left h1{font-family:Merriweather;margin:0;font-size:34px;line-height:1.05}
+    .hero-desc{color:var(--muted);margin-top:12px}
+    .hero-cta{margin-top:20px;display:flex;gap:12px;align-items:center}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,246,255,0.9));padding:20px;border-radius:14px;box-shadow:var(--shadow);}
+
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+    .feature{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .feature h4{margin:6px 0 0 0}
+    .feature p{color:var(--muted);margin:8px 0 0}
+
+    /* sample report */
+    .sample{display:flex;gap:18px;align-items:center;margin:28px 0}
+    .report-preview{width:320px;border-radius:10px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff,#fbf8ff);padding:14px}
+    .report-preview img{width:100%;display:block}
+
+    /* comparison */
+    .comparison{background:linear-gradient(180deg, rgba(124,92,255,0.06), rgba(245,158,11,0.03));padding:18px;border-radius:12px;margin:28px 0}
+    table{width:100%;border-collapse:collapse}
+    td,th{padding:10px;border-bottom:1px solid rgba(15,23,42,0.04)}
+
+    /* pricing */
+    .pricing{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0}
+    .price-card{flex:1;min-width:260px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .price{font-size:28px;font-weight:700}
+
+    /* faqs */
+    .faq{margin:28px 0}
+    .faq-item{padding:12px 0;border-bottom:1px dashed rgba(15,23,42,0.04)}
+
+    /* testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .testimonial{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+
+    footer{padding:28px 0;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr 360px}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .hero{grid-template-columns:1fr;}
+      .hero-card{order:2}
+      .features{grid-template-columns:1fr}
+      .testimonials{grid-template-columns:1fr}
+      .report-preview{width:100%}
+      header{padding:8px 0}
+      .nav{display:none}
+    }
+
+    /* subtle animations */
+    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+    /* tiny form */
+    .leadform{display:flex;gap:8px;align-items:center}
+    .leadform input[type=text]{padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);flex:1}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* buy buttons area */
+    .buy-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .buy-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;border:0;font-weight:700;text-decoration:none}
+    .buy-local{background:#0ea5b7;color:#fff}
+    .buy-int{background:#1f2937;color:#fff}
+
+    /* badges */
+    .badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(16,24,40,0.04);font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">LB</div>
+        <div>
+          <div class="site-title">Astrology of Bharat</div>
+          <div class="small">LagnaDuo — Shared Future Scorecard</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a class="btn-ghost" href="#how">How it works</a>
+        <a class="btn-ghost" href="#sample">Sample</a>
+        <a class="btn" href="#buy">Get your scorecard</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="fade-up">Discover your <span style="color:var(--accent)">Shared Future</span> — beyond compatibility</h1>
+        <p class="hero-desc small fade-up">A modern Vedic astrology scorecard that predicts whether two people can peacefully live together — not just whether they like each other.</p>
+
+        <div class="hero-cta fade-up">
+          <a class="btn" href="#buy">Get Your Scorecard — ₹1100 / $15</a>
+          <a class="btn-ghost" href="#sample">Preview sample</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px;align-items:center" class="fade-up">
+          <div class="badge">Instant PDF</div>
+          <div class="badge">Secure Checkout</div>
+          <div class="badge">Works Worldwide</div>
+        </div>
+
+        <div style="margin-top:22px" class="fade-up">
+          <h3 style="margin:0 0 6px 0">Who should get LagnaDuo?</h3>
+          <p class="small">Couples planning to move in, long-distance partners, engaged couples, spiritual seekers, or anyone wanting clarity on living-together harmony.</p>
+        </div>
+
+      </div>
+
+      <aside class="hero-card fade-up" aria-hidden="false">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <strong>Shared Future Score</strong>
+              <div class="small">(0–100) — higher means smoother shared living</div>
+            </div>
+            <div style="font-size:28px;color:var(--accent);font-weight:800">78</div>
+          </div>
+
+          <div style="background:#fff;padding:10px;border-radius:10px;border:1px solid rgba(16,24,40,0.04)">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Daily Harmony</div>
+                <div class="small">Routines, chores, rhythm</div>
+              </div>
+              <div class="small" style="font-weight:700">Good</div>
+            </div>
+          </div>
+
+          <div style="background:linear-gradient(90deg,#fff8f2,#f7fbff);padding:10px;border-radius:10px;border:1px solid rgba(16,24,40,0.02)">
+            <div style="font-weight:700">Karmic Support</div>
+            <div class="small">Long-term destiny alignment present</div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a class="buy-btn buy-local" id="cashfree" href="CASHFREE_LINK" target="_blank" rel="noopener noreferrer">Buy in India — ₹1100</a>
+            <a class="buy-btn buy-int" id="paypal" href="PAYPAL_LINK" target="_blank" rel="noopener noreferrer">Buy International — $15</a>
+            <div class="small">After purchase you will receive an instant PDF via email.</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- FEATURES -->
+    <section>
+      <div class="features">
+        <div class="feature fade-up">
+          <strong>Space-Time Compatibility</strong>
+          <p>How two ascendants and house patterns behave when sharing the same environment.</p>
+        </div>
+        <div class="feature fade-up">
+          <strong>Daily Rhythm Alignment</strong>
+          <p>Predicts whether routines, sleep, and work cycles will harmonize or collide.</p>
+        </div>
+        <div class="feature fade-up">
+          <strong>Emotional Recovery Score</strong>
+          <p>Shows which partner naturally stabilizes emotional dips and why.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAMPLE REPORT -->
+    <section id="sample" class="sample fade-up">
+      <div class="report-preview">
+        <!-- sample visual (use your own PDF preview image) -->
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect rx='14' ry='14' width='100%' height='100%' fill='%23fff'/><text x='50' y='60' font-family='Merriweather' font-weight='700' font-size='26' fill='%230f172a'>LagnaDuo — Sample Report</text><text x='50' y='110' font-family='Inter' font-size='14' fill='%236b7280'>Shared Future Score: 78</text><rect x='50' y='140' width='700' height='12' rx='6' fill='%237c5cff'/></svg>" alt="Sample report preview">
+      </div>
+      <div style="flex:1">
+        <h3>What’s inside the report</h3>
+        <ul class="small">
+          <li>Overall Shared Future Score (0–100)</li>
+          <li>Space-time harmony by house</li>
+          <li>Routines & rhythm compatibility</li>
+          <li>Top 3 red flags and actionable remedies</li>
+          <li>18-month harmony timeline</li>
+        </ul>
+        <div style="margin-top:12px">
+          <a class="btn" href="#buy">Get your full report</a>
+          <a style="margin-left:10px" class="btn-ghost" href="#faq">Read FAQs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="comparison fade-up" id="how">
+      <h3 style="margin-top:0">Compatibility Reports vs LagnaDuo</h3>
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Standard Compatibility</th><th>LagnaDuo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Attraction / Synastry</td><td>✔</td><td>✔</td></tr>
+          <tr><td>Living-together harmony</td><td>✖</td><td>✔</td></tr>
+          <tr><td>Daily rhythm prediction</td><td>✖</td><td>✔</td></tr>
+          <tr><td>Practical remedies</td><td>Limited</td><td>Detailed</td></tr>
+          <tr><td>Deliverable</td><td>Reading</td><td>PDF scorecard</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- PRICING -->
+    <section id="buy" class="pricing fade-up">
+      <div class="price-card">
+        <div class="small">Digital Instant Delivery</div>
+        <div class="price">₹1100</div>
+        <div class="small">One-time PDF report for shared living analysis (India)</div>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <a class="buy-btn buy-local" href="CASHFREE_LINK" id="cashfree-2" target="_blank" rel="noopener noreferrer">Buy (India) — Pay with Cashfree</a>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="small">International Purchase</div>
+        <div class="price">$15</div>
+        <div class="small">Instant PDF delivered by email</div>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <a class="buy-btn buy-int" href="PAYPAL_LINK" id="paypal-2" target="_blank" rel="noopener noreferrer">Buy (International) — Pay with PayPal</a>
+        </div>
+      </div>
+
+      <div style="flex-basis:100%"></div>
+      <div style="margin-top:12px;font-size:13px;color:var(--muted)">Note: Click the Buy button to complete the secure checkout. After purchase, you’ll receive the PDF and instructions by email. For any issues, contact us at <a href="mailto:info@astrologyofbharat.org">info@astrologyofbharat.org</a>.</div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="fade-up">
+      <h3>What readers say</h3>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div style="font-weight:700">A. &amp; M. (Mumbai)</div>
+          <div class="small">“LagnaDuo showed us exactly why our routines clashed. We fixed two habits and our home became peaceful.”</div>
+        </div>
+        <div class="testimonial">
+          <div style="font-weight:700">Jenny (UK)</div>
+          <div class="small">“I thought compatibility was enough — this report changed how we planned our move. Highly recommended.”</div>
+        </div>
+        <div class="testimonial">
+          <div style="font-weight:700">Carlos (US)</div>
+          <div class="small">“Fast, practical, and surprisingly accurate about our work schedules.”</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq fade-up">
+      <h3>Frequently asked questions</h3>
+      <div class="faq-item">
+        <strong>How is this different from a compatibility report?</strong>
+        <p class="small">Compatibility shows attraction and long-term match. LagnaDuo focuses on actual cohabitation energy — how you will behave when sharing life and space.</p>
+      </div>
+      <div class="faq-item">
+        <strong>What details do you need?</strong>
+        <p class="small">Exact birth date, time and place for both partners. If time is unknown, include the best estimate — we will note uncertainty in the report.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Is this suitable for same-sex couples?</strong>
+        <p class="small">Yes — the method is fully inclusive and based on energy patterns, not gender.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Do you offer remedies?</strong>
+        <p class="small">Yes, each report includes actionable steps and simple remedies where required.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div class="small">© Astrology of Bharat • LagnaDuo • All rights reserved</div>
+        <div class="small">Made with care — <a href="/p/contact.html">Contact us</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Small UX: detect placeholders and warn in console
+    const placeholders = ['CASHFREE_LINK','PAYPAL_LINK'];
+    placeholders.forEach(id=>{
+      if(document.body.innerHTML.includes(id)){
+        console.warn('Replace the placeholder', id, 'with your actual payment link.');
+      }
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Simple fade-up triggers
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add('fade-up');
+      });
+    },{threshold:0.08});
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
+
