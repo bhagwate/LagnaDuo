@@ -398,7 +398,7 @@
     });
 
     // Existing scripts (placeholders, smooth scroll, fade-up)
-    const placeholders = ['CASHFREE_LINK','PAYPAL_LINK'];
+    const placeholders = ['https://payments.cashfree.com/forms?code=LagnaDuo','https://www.paypal.com/ncp/payment/T8PX5CSKCEJYS'];
     placeholders.forEach(id=>{
       if(document.body.innerHTML.includes(id)){
         console.warn('Replace the placeholder', id, 'with your actual payment link.');
