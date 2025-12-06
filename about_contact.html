@@ -74,6 +74,18 @@
       font-family: inherit;
     }
     .form-group textarea { height: 100px; resize: vertical; }
+    
+    /* New Styles for Logic/Validation */
+    .name-row { display: flex; gap: 10px; }
+    .name-row .form-group { flex: 1; }
+    
+    .error-message {
+      color: #dc2626;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
     .submit-btn {
       width: 100%;
       background: var(--accent);
@@ -84,8 +96,25 @@
       font-weight: 600;
       cursor: pointer;
       font-size: 16px;
+      transition: opacity 0.3s;
     }
     .submit-btn:hover { opacity: 0.9; }
+    .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* Modal Styles */
+    #success-modal-overlay {
+      display: none; position: fixed; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 999;
+    }
+    #success-modal {
+      display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background-color: white; padding: 30px; border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;
+      text-align: center; width: 90%; max-width: 450px;
+    }
+    #close-modal-btn {
+      padding: 10px 20px; border: none; border-radius: 8px;
+      background-color: var(--accent); color: white; font-weight:600; cursor: pointer;
+    }
 
     footer{padding:28px 0;color:var(--muted);font-size:14px; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px;}
 
@@ -167,28 +196,55 @@ In my eventful journey of more than a decade and half as practicing astrologer, 
           <h3 style="margin-top:0">Contact Us</h3>
           <p class="small">Have a question or need support? Fill out the form below.</p>
           
-          <form class="leadform-vertical" action="https://script.google.com/macros/s/AKfycbzrwytnuvUf1__-mQ_jjQDdWYZQxp7I9zK1DUT_m6Pl7VV6x1AdCYsUwgqnaDJn51AqAQ/exec" method="POST">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your Name" required>
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+          <form id="contactForm" 
+                class="leadform-vertical" 
+                action="https://script.google.com/macros/s/AKfycbzrwytnuvUf1__-mQ_jjQDdWYZQxp7I9zK1DUT_m6Pl7VV6x1AdCYsUwgqnaDJn51AqAQ/exec" 
+                method="POST" 
+                target="hidden_iframe">
+            
+            <input type="hidden" name="timestamp" id="timestamp" />
+
+            <div class="name-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                <div id="firstNameError" class="error-message">Invalid name format.</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                <div id="lastNameError" class="error-message">Invalid name format.</div>
+              </div>
             </div>
             
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" placeholder="your@email.com" required>
+              <div id="emailError" class="error-message">Please enter a valid email.</div>
             </div>
             
             <div class="form-group">
               <label for="message">Message</label>
               <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+              <div id="messageError" class="error-message">Message is required.</div>
+              <div id="messageLinkError" class="error-message">Links/URLs are not allowed in messages.</div>
             </div>
 
-            <button type="submit" class="submit-btn">Send Message</button>
+            <div class="form-group">
+              <label id="captchaLabel" for="captchaInput">Math Check</label>
+              <input type="number" id="captchaInput" placeholder="Answer here" required style="width: 100px;">
+              <div id="captchaError" class="error-message">Incorrect answer.</div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="submit-btn">Send Message</button>
           </form>
           
           <div style="margin-top: 20px; font-size: 13px; color: var(--muted); text-align: center;">
-            <!--Or email directly:<br>
-            <a href="mailto:info@astrologyofbharat.org" style="color:var(--accent); text-decoration:none;">info@astrologyofbharat.org</a>-->
+            Or email directly:<br>
+            <a href="mailto:info@astrologyofbharat.org" style="color:var(--accent); text-decoration:none;">info@astrologyofbharat.org</a>
           </div>
         </div>
       </aside>
@@ -202,15 +258,153 @@ In my eventful journey of more than a decade and half as practicing astrologer, 
       </div>
     </footer>
   </div>
+
+  <div id="success-modal-overlay"></div>
+  <div id="success-modal">
+    <h3 style="margin-top:0">Sent!</h3>
+    <p>Successfully submitted. Your message has been sent to Partho Banerjee.</p>
+    <button id="close-modal-btn">Close</button>
+  </div>
   
   <script>
-    // Simple intersection observer for the fade-up effect
+    // Fade Up Animation
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(en=>{
         if(en.isIntersecting) en.target.classList.add('fade-up');
       });
     },{threshold:0.08});
     document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+    // === CONTACT FORM LOGIC (Integrated from Reference) ===
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("contactForm");
+      const submitButton = document.getElementById("submit-btn");
+
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const email = document.getElementById("email");
+      const message = document.getElementById("message");
+      const captchaInput = document.getElementById("captchaInput");
+      const captchaLabel = document.getElementById("captchaLabel");
+      const timestamp = document.getElementById("timestamp");
+
+      const firstNameError = document.getElementById("firstNameError");
+      const lastNameError = document.getElementById("lastNameError");
+      const emailError = document.getElementById("emailError");
+      const messageError = document.getElementById("messageError");
+      const messageLinkError = document.getElementById("messageLinkError");
+      const captchaError = document.getElementById("captchaError");
+
+      const overlay = document.getElementById("success-modal-overlay");
+      const modal = document.getElementById("success-modal");
+      const closeModalBtn = document.getElementById("close-modal-btn");
+
+      let captchaNum1, captchaNum2, captchaAnswer;
+
+      // Validation Regex
+      const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'’-]+$/;
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      const forbiddenStrings = ['http', 'https', 'www.', '.com', '.net', '.ru', '.in', '.pk', '//'];
+      const domainLikeRegex = /\b[a-z0-9-]+\.(com|net|org|info|biz|ru|in|pk|uk|io|co|me|xyz|site|online|shop|store)\b/i;
+
+      function generateCaptcha() {
+        captchaNum1 = Math.floor(Math.random() * 10) + 1;
+        captchaNum2 = Math.floor(Math.random() * 10) + 1;
+        captchaAnswer = captchaNum1 + captchaNum2;
+        captchaLabel.textContent = `What is ${captchaNum1} + ${captchaNum2} = ?`;
+        captchaInput.value = "";
+      }
+
+      function showError(el) { el.style.display = "block"; }
+      function hideError(el) { el.style.display = "none"; }
+
+      function sanitizeNameInput(el) {
+        el.value = el.value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s'’-]/g, '');
+      }
+
+      firstName.addEventListener("input", () => sanitizeNameInput(firstName));
+      lastName.addEventListener("input", () => sanitizeNameInput(lastName));
+
+      function containsForbiddenStrings(text) {
+        const lower = text.toLowerCase();
+        return forbiddenStrings.some(str => lower.includes(str));
+      }
+      function looksLikeDomain(text) {
+        return domainLikeRegex.test(text);
+      }
+
+      function validateForm() {
+        let valid = true;
+        [firstNameError,lastNameError,emailError,messageError,messageLinkError,captchaError].forEach(hideError);
+
+        const firstVal = firstName.value.trim();
+        const lastVal = lastName.value.trim();
+        const msgVal = message.value.trim();
+
+        // Validate names
+        if (!firstVal || !nameRegex.test(firstVal)) { showError(firstNameError); valid = false; }
+        if (!lastVal || !nameRegex.test(lastVal)) { showError(lastNameError); valid = false; }
+
+        // Validate email
+        if (!emailRegex.test(email.value.trim())) { showError(emailError); valid = false; }
+
+        // Validate message
+        if (!msgVal) { 
+          showError(messageError); valid = false; 
+        } else if (containsForbiddenStrings(msgVal) || looksLikeDomain(msgVal)) {
+          showError(messageLinkError); valid = false;
+        }
+
+        // Validate captcha
+        if (parseInt(captchaInput.value) !== captchaAnswer) { showError(captchaError); valid = false; }
+
+        return valid;
+      }
+
+      function showModal() {
+        overlay.style.display = "block";
+        modal.style.display = "block";
+      }
+      function closeModal() {
+        overlay.style.display = "none";
+        modal.style.display = "none";
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+      overlay.addEventListener("click", closeModal);
+
+      form.addEventListener("submit", function(e) {
+        // We do not prevent default here immediately because the form targets an iframe
+        // But we must validate first. If invalid, prevent default.
+        if (!validateForm()) {
+          e.preventDefault();
+          generateCaptcha();
+          return false;
+        }
+
+        // Prepare submission
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        timestamp.value = new Date().toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          dateStyle: "full",
+          timeStyle: "long",
+        });
+
+        // The form will submit to the hidden iframe
+        // We set a timeout to simulate success handling since we can't easily read cross-origin iframe load
+        setTimeout(() => {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Message";
+          form.reset();
+          generateCaptcha();
+          showModal();
+        }, 1500);
+      });
+
+      generateCaptcha();
+    });
   </script>
 </body>
 </html>
