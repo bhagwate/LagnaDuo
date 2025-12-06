@@ -111,6 +111,12 @@
       display:flex; align-items:center; justify-content:space-between; padding:14px 20px;
       border-bottom:1px solid rgba(15,23,42,0.06); background:#fcfbff;
     }
+    /* START added for close button */
+    .modal-header button{
+      background:var(--accent); color:white; border:none; padding:9px 18px;
+      border-radius:10px; font-weight:600; cursor:pointer; font-size:14px;
+    }
+    /* END added for close button */
     .ld-modal .modal-header h3{
       margin:0; font-family:Merriweather; font-size:20px; font-weight:700; color:var(--text);
     }
@@ -350,10 +356,9 @@
           <h3>LagnaDuo — Sample Scorecard</h3>
           <div style="font-size:13px; color:var(--muted); margin-top:4px;">Full preview • Exact format delivered after purchase</div>
         </div>
-        <!--<button class="modal-close">Close</button>-->
+        <button class="modal-close">Close</button>
       </div>
-      <button class="modal-close">Close</button>
-      <div class="modal-body">
+      <button class="modal-close">Close</button>      
         <img src="images/LagnaDuo_sample_score_covered_new1.png" alt="LagnaDuo Sample Report Full View">
       </div>
       <div class="modal-footer">
