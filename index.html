@@ -1,8 +1,3 @@
-<!--
-LagnaDuo Landing Page HTML (single-file)
-Usage: Replace CASHFREE_LINK and PAYPAL_LINK with your payment URLs.
-Author: ChatGPT (GPT-5 Thinking mini)
--->
 <!doctype html>
 <html lang="en">
 <head>
@@ -42,45 +37,36 @@ Author: ChatGPT (GPT-5 Thinking mini)
     .nav{display:flex;gap:12px;align-items:center}
     .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:var(--shadow);border:0}
     .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 12px;border-radius:8px}
-
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
     .hero-left h1{font-family:Merriweather;margin:0;font-size:34px;line-height:1.05}
     .hero-desc{color:var(--muted);margin-top:12px}
     .hero-cta{margin-top:20px;display:flex;gap:12px;align-items:center}
     .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,246,255,0.9));padding:20px;border-radius:14px;box-shadow:var(--shadow);}
-
     /* features */
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
     .feature{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
     .feature h4{margin:6px 0 0 0}
     .feature p{color:var(--muted);margin:8px 0 0}
-
     /* sample report */
     .sample{display:flex;gap:18px;align-items:center;margin:28px 0}
     .report-preview{width:320px;border-radius:10px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(180deg,#fff,#fbf8ff);padding:14px}
     .report-preview img{width:100%;display:block}
-
     /* comparison */
     .comparison{background:linear-gradient(180deg, rgba(124,92,255,0.06), rgba(245,158,11,0.03));padding:18px;border-radius:12px;margin:28px 0}
     table{width:100%;border-collapse:collapse}
     td,th{padding:10px;border-bottom:1px solid rgba(15,23,42,0.04)}
-
     /* pricing */
     .pricing{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0}
     .price-card{flex:1;min-width:260px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
     .price{font-size:28px;font-weight:700}
-
     /* faqs */
     .faq{margin:28px 0}
     .faq-item{padding:12px 0;border-bottom:1px dashed rgba(15,23,42,0.04)}
-
     /* testimonials */
     .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .testimonial{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
-
     footer{padding:28px 0;color:var(--muted);font-size:14px}
-
     /* responsive */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr 360px}
@@ -96,24 +82,104 @@ Author: ChatGPT (GPT-5 Thinking mini)
       header{padding:8px 0}
       .nav{display:none}
     }
-
     /* subtle animations */
     .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .7s ease forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
-
     /* tiny form */
     .leadform{display:flex;gap:8px;align-items:center}
     .leadform input[type=text]{padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);flex:1}
     .small{font-size:13px;color:var(--muted)}
-
     /* buy buttons area */
     .buy-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .buy-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;border:0;font-weight:700;text-decoration:none}
     .buy-local{background:#0ea5b7;color:#fff}
     .buy-int{background:#1f2937;color:#fff}
-
     /* badges */
     .badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(16,24,40,0.04);font-weight:600}
+
+    /* ==================== MODAL STYLES ==================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15,23,42,0.88);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.show {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      display: block;
+    }
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      background: rgba(15,23,42,0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+    .close-modal:hover {
+      background: rgba(15,23,42,0.9);
+    }
+    .close-bottom {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    /* caption style inside modal */
+    .modal-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15,23,42,0.8);
+      color: white;
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 15px;
+      font-family: Inter, sans-serif;
+    }
+    @media (max-width: 720px) {
+      .close-modal { width: 36px; height: 36px; font-size: 20px; }
+      .close-bottom { padding: 10px 16px; font-size: 14px; }
+    }
   </style>
 </head>
 <body>
@@ -127,11 +193,11 @@ Author: ChatGPT (GPT-5 Thinking mini)
         </div>
       </div>
       <nav class="nav">
-        <a class="btn-ghost" href="#sample">Sample</a>
+        <a class="btn-ghost open-modal" href="#">Sample</a>
         <a class="btn-ghost" href="#how">How it works</a>
         <a class="btn" href="#buy">Get your scorecard</a>
         <a class="btn-ghost" href="#how">About</a>
-        <a class="btn-ghost" href="#how">Contact</a>                
+        <a class="btn-ghost" href="#how">Contact</a>
       </nav>
     </header>
 
@@ -139,25 +205,20 @@ Author: ChatGPT (GPT-5 Thinking mini)
       <div class="hero-left">
         <h1 class="fade-up">Discover your <span style="color:var(--accent)">Shared Future</span> — beyond compatibility</h1>
         <p class="hero-desc small fade-up">A modern Vedic astrology scorecard that predicts whether two people can peacefully live together — not just whether they like each other.</p>
-
         <div class="hero-cta fade-up">
           <a class="btn" href="#buy">Get Your Scorecard — ₹1100 / $15</a>
-          <a class="btn-ghost" href="#sample">Preview sample</a>
+          <a class="btn-ghost open-modal" href="#">Preview sample</a>
         </div>
-
         <div style="margin-top:18px;display:flex;gap:12px;align-items:center" class="fade-up">
           <div class="badge">Instant PDF</div>
           <div class="badge">Secure Checkout</div>
           <div class="badge">Works Worldwide</div>
         </div>
-
         <div style="margin-top:22px" class="fade-up">
           <h3 style="margin:0 0 6px 0">Who should get LagnaDuo?</h3>
           <p class="small">Couples planning to move in, long-distance partners, engaged couples, spiritual seekers, or anyone wanting clarity on living-together harmony.</p>
         </div>
-
       </div>
-
       <aside class="hero-card fade-up" aria-hidden="false">
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;justify-content:space-between;align-items:center">
@@ -167,7 +228,6 @@ Author: ChatGPT (GPT-5 Thinking mini)
             </div>
             <div style="font-size:28px;color:var(--accent);font-weight:800">78</div>
           </div>
-
           <div style="background:#fff;padding:10px;border-radius:10px;border:1px solid rgba(16,24,40,0.04)">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <div>
@@ -177,12 +237,10 @@ Author: ChatGPT (GPT-5 Thinking mini)
               <div class="small" style="font-weight:700">Good</div>
             </div>
           </div>
-
           <div style="background:linear-gradient(90deg,#fff8f2,#f7fbff);padding:10px;border-radius:10px;border:1px solid rgba(16,24,40,0.02)">
             <div style="font-weight:700">Karmic Support</div>
             <div class="small">Long-term destiny alignment present</div>
           </div>
-
           <div style="display:flex;flex-direction:column;gap:8px;">
             <a class="buy-btn buy-local" id="cashfree" href="CASHFREE_LINK" target="_blank" rel="noopener noreferrer">Buy in India — ₹1100</a>
             <a class="buy-btn buy-int" id="paypal" href="PAYPAL_LINK" target="_blank" rel="noopener noreferrer">Buy International — $15</a>
@@ -213,12 +271,12 @@ Author: ChatGPT (GPT-5 Thinking mini)
     <!-- SAMPLE REPORT -->
     <section id="sample" class="sample fade-up">
       <div class="report-preview">
-        <a href="images/preview_image.png" target="_blank" class="preview-link">
+        <a href="#" class="open-modal preview-link">
           <figure>
-            <img src="images/preview_image.png" 
-           alt="LagnaDuo Sample Report Preview"
-           style="width:100%; max-width:800px; height:auto; border-radius:14px; display:block; margin:0 auto;">
-            <figcaption>Click to enlarge</figcaption>
+            <img src="images/preview_image.png"
+                 alt="LagnaDuo Sample Report Preview"
+                 style="width:100%; max-width:800px; height:auto; border-radius:14px; display:block; margin:0 auto;">
+            <figcaption>Click to enlarge sample</figcaption>
           </figure>
         </a>
       </div>
@@ -246,9 +304,9 @@ Author: ChatGPT (GPT-5 Thinking mini)
           <tr><th>Feature</th><th>Standard Compatibility</th><th>LagnaDuo</th></tr>
         </thead>
         <tbody>
-          <tr><td>Attraction / Synastry</td><td>✔</td><td>✔</td></tr>
-          <tr><td>Living-together harmony</td><td>✖</td><td>✔</td></tr>
-          <tr><td>Daily rhythm prediction</td><td>✖</td><td>✔</td></tr>
+          <tr><td>Attraction / Synastry</td><td>Check</td><td>Check</td></tr>
+          <tr><td>Living-together harmony</td><td>Cross</td><td>Check</td></tr>
+          <tr><td>Daily rhythm prediction</td><td>Cross</td><td>Check</td></tr>
           <tr><td>Practical remedies</td><td>Limited</td><td>Detailed</td></tr>
           <tr><td>Deliverable</td><td>Reading</td><td>PDF scorecard</td></tr>
         </tbody>
@@ -273,7 +331,6 @@ Author: ChatGPT (GPT-5 Thinking mini)
           <a class="buy-btn buy-int" href="PAYPAL_LINK" id="paypal-2" target="_blank" rel="noopener noreferrer">Buy (International) — Pay with PayPal</a>
         </div>
       </div>
-
       <div style="flex-basis:100%"></div>
       <div style="margin-top:12px;font-size:13px;color:var(--muted)">Note: Click the Buy button to complete the secure checkout. After purchase, you’ll receive the PDF and instructions by email. For any issues, contact us at <a href="mailto:info@astrologyofbharat.org">info@astrologyofbharat.org</a>.</div>
     </section>
@@ -326,8 +383,51 @@ Author: ChatGPT (GPT-5 Thinking mini)
     </footer>
   </div>
 
+  <!-- MODAL -->
+  <div class="modal-overlay" id="sampleModal">
+    <div class="modal-content">
+      <button class="close-modal" aria-label="Close">×</button>
+      <img src="images/LagnaDuo_sample_score_covered_new1.png" alt="LagnaDuo Full Sample Report">
+      <div class="modal-caption">LagnaDuo Sample Report — Full View</div>
+      <button class="close-bottom close-modal">Close</button>
+    </div>
+  </div>
+
   <script>
-    // Small UX: detect placeholders and warn in console
+    // Open modal
+    document.querySelectorAll('.open-modal').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('sampleModal').classList.add('show');
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+      });
+    });
+
+    // Close modal
+    document.querySelectorAll('.close-modal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('sampleModal').classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close on overlay click
+    document.getElementById('sampleModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('sampleModal')) {
+        document.getElementById('sampleModal').classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && document.getElementById('sampleModal').classList.contains('show')) {
+        document.getElementById('sampleModal').classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Existing scripts (placeholders warning + smooth scroll + fade-up)
     const placeholders = ['CASHFREE_LINK','PAYPAL_LINK'];
     placeholders.forEach(id=>{
       if(document.body.innerHTML.includes(id)){
@@ -335,16 +435,16 @@ Author: ChatGPT (GPT-5 Thinking mini)
       }
     });
 
-    // Smooth scroll for internal links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        e.preventDefault();
-        const t = document.querySelector(a.getAttribute('href'));
-        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
-      });
+      if (!a.classList.contains('open-modal')) {
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          const t = document.querySelector(a.getAttribute('href'));
+          if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+      }
     });
 
-    // Simple fade-up triggers
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(en=>{
         if(en.isIntersecting) en.target.classList.add('fade-up');
