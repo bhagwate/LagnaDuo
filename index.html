@@ -37,13 +37,6 @@
     .nav{display:flex;gap:12px;align-items:center}
     .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:var(--shadow);border:0}
     .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:500}
-    
-    /* UPDATED: Link Color Rule */
-    /* Targets all links that are NOT buttons */
-    a:not(.btn):not(.btn-ghost):not(.buy-btn):not(.modal-close) {
-      color: blue;
-    }
-
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
     .hero-left h1{font-family:Merriweather;margin:0;font-size:34px;line-height:1.05}
@@ -202,7 +195,7 @@
               <strong>Shared Future Score</strong>
               <div class="small">(0–100) — higher means smoother shared living</div>
             </div>
-            <div id="live-score" style="font-size:28px;color:var(--accent);font-weight:800">78</div>
+            <div style="font-size:28px;color:var(--accent);font-weight:800">78</div>
           </div>
           <div style="background:#fff;padding:10px;border-radius:10px;border:1px solid rgba(16,24,40,0.04)">
             <div style="display:flex;justify-content:space-between;align-items:center">
@@ -210,12 +203,12 @@
                 <div style="font-weight:700">Daily Harmony</div>
                 <div class="small">Routines, chores, rhythm</div>
               </div>
-              <div id="live-harmony" class="small" style="font-weight:700">Good</div>
+              <div class="small" style="font-weight:700">Good</div>
             </div>
           </div>
           <div style="background:linear-gradient(90deg,#fff8f2,#f7fbff);padding:10px;border-radius:10px;border:1px solid rgba(16,24,40,0.02)">
             <div style="font-weight:700">Karmic Support</div>
-            <div id="live-karmic" class="small">Long-term destiny alignment present</div>
+            <div class="small">Long-term destiny alignment present</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <a class="buy-btn buy-local" id="cashfree" href="https://payments.cashfree.com/forms?code=LagnaDuo" target="_blank" rel="noopener noreferrer">Buy in India — ₹1100</a>
@@ -312,15 +305,15 @@
       <div class="testimonials">
         <div class="testimonial">
           <div style="font-weight:700">A. & M. (Mumbai)</div>
-          <div class="small">“LagnaDuo showed us exactly why our routines clashed. We fixed two habits and our home became peaceful.”</div>
+          <div class="small">“LagnaDuo showed us exactly why our routines clashed.”</div>
         </div>
         <div class="testimonial">
           <div style="font-weight:700">Jenny (UK)</div>
-          <div class="small">“I thought compatibility was enough — this report changed how we planned our move. Highly recommended.”</div>
+          <div class="small">“I thought personal compatibility was enough — this scorecard changed how we planned our move. Highly recommended.”</div>
         </div>
         <div class="testimonial">
           <div style="font-weight:700">Carlos (US)</div>
-          <div class="small">“Fast, practical, and surprisingly accurate about our work schedules.”</div>
+          <div class="small">“Fast, practical, and surprisingly accurate about our marriage.”</div>
         </div>
       </div>
     </section>
@@ -329,26 +322,26 @@
       <h3>Frequently asked questions</h3>
       <div class="faq-item">
         <strong>How is this different from a compatibility report?</strong>
-        <p class="small">Compatibility shows attraction and long-term match. LagnaDuo focuses on actual cohabitation energy — how you will behave when sharing life and space.</p>
+        <p class="small">Compatibility shows attraction and cosmic match. LagnaDuo focuses on actual cohabitation energy — how you will behave when sharing life and space.</p>
       </div>
       <div class="faq-item">
         <strong>What details do you need?</strong>
-        <p class="small">Exact birth date, time and place for both partners. If time is unknown, include the best estimate — we will note uncertainty in the report.</p>
+        <p class="small">Birth date, time and place for both partners. If time is unknown, include the best estimate.</p>
       </div>
       <div class="faq-item">
-        <strong>Is this suitable for same-sex couples?</strong>
-        <p class="small">Yes — the method is fully inclusive and based on energy patterns, not gender.</p>
+        <strong>Is this suitable for any two set of partners/couples irrespective of age, country, religion, race, creed or belief?</strong>
+        <p class="small">Yes — the method is fully inclusive and based on energy patterns not any of the above considerations.</p>
       </div>
       <div class="faq-item">
         <strong>Do you offer remedies?</strong>
-        <p class="small">Yes, each report includes actionable steps and simple remedies where required.</p>
+        <p class="small">LagnaDuo does not offer remedies. It only tells you the score as shown in sample PDF. For remedial measure you may directly contact the creator of LagnaDuo, Astrologer Partho Banerjee by clicking the "Contact" link at top left on this page.</p>
       </div>
     </section>
 
     <footer>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-        <div class="small">© Astrology of Bharat • LagnaDuo • All rights reserved</div>
-        <div class="small">Made with care — <a href="about_contact.html">Contact us</a></div>
+        <div class="small">© Partho Banerjee @ <a href="https://AstrologyOfBharat.org">Astrology of Bharat</a> • LagnaDuo • All rights reserved</div>
+        <div class="small">Contact author — <a href="about_contact.html">Contact</a></div>
       </div>
     </footer>
   </div>
@@ -431,56 +424,6 @@
       });
     },{threshold:0.08});
     document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
-
-    // =========================================================
-    // UPDATED LOGIC: Dynamic Score, Harmony Text, and Karmic Text
-    // =========================================================
-    function updateLiveScore() {
-      // 1. Generate random number between 15 and 72
-      const min = 15;
-      const max = 72;
-      const score = Math.floor(Math.random() * (max - min + 1)) + min;
-
-      // 2. Select the elements by ID
-      const scoreEl = document.getElementById('live-score');
-      const harmonyEl = document.getElementById('live-harmony');
-      const karmicEl = document.getElementById('live-karmic');
-
-      // 3. Update Score Display
-      if(scoreEl) scoreEl.innerText = score;
-
-      // 4. Determine Dynamic Texts
-      let harmonyText = "";
-      let karmicText = "";
-
-      // Logic Slab for Harmony and contextual Karmic text
-      if (score > 65) {
-        harmonyText = "Very strong";
-        karmicText = "Deep spiritual & destiny alignment";
-      } else if (score > 55) {
-        harmonyText = "Strong";
-        karmicText = "Solid karmic foundation";
-      } else if (score > 40) {
-        harmonyText = "Good";
-        karmicText = "Moderate destiny alignment present";
-      } else if (score > 30) {
-        harmonyText = "Average";
-        karmicText = "Partial alignment, needs effort";
-      } else if (score > 20) {
-        harmonyText = "Less";
-        karmicText = "Minor karmic friction likely";
-      } else {
-        harmonyText = "Poor";
-        karmicText = "Significant karmic challenges";
-      }
-
-      // 5. Update Text Elements
-      if(harmonyEl) harmonyEl.innerText = harmonyText;
-      if(karmicEl) karmicEl.innerText = karmicText;
-    }
-
-    // Run interval every 7 seconds
-    setInterval(updateLiveScore, 7000);
   </script>
 </body>
 </html>
