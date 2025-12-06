@@ -36,7 +36,7 @@
     .site-title{font-weight:700;font-family:Merriweather}
     .nav{display:flex;gap:12px;align-items:center}
     .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:var(--shadow);border:0}
-    .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 12px;border-radius:8px}
+    .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:500}
     /* HERO */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
     .hero-left h1{font-family:Merriweather;margin:0;font-size:34px;line-height:1.05}
@@ -56,6 +56,13 @@
     .comparison{background:linear-gradient(180deg, rgba(124,92,255,0.06), rgba(245,158,11,0.03));padding:18px;border-radius:12px;margin:28px 0}
     table{width:100%;border-collapse:collapse}
     td,th{padding:10px;border-bottom:1px solid rgba(15,23,42,0.04)}
+    
+    /* UPDATED: Center align 2nd and 3rd columns */
+    .comparison th:nth-child(2), .comparison td:nth-child(2),
+    .comparison th:nth-child(3), .comparison td:nth-child(3) {
+      text-align: center;
+    }
+
     /* pricing */
     .pricing{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0}
     .price-card{flex:1;min-width:260px;background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
@@ -67,6 +74,7 @@
     .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .testimonial{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
     footer{padding:28px 0;color:var(--muted);font-size:14px}
+    
     /* responsive */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr 360px}
@@ -81,7 +89,13 @@
       .report-preview{width:100%}
       header{padding:8px 0}
       .nav{display:none}
+      
+      /* UPDATED: Fix for sample section on mobile to stack vertically */
+      .sample { flex-direction: column; align-items: stretch; }
+      .sample .report-preview { width: 100%; max-width: 100%; }
+      .sample h3 { margin-top: 20px; }
     }
+    
     /* subtle animations */
     .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .7s ease forwards}
     @keyframes fadeUp{to{opacity:1;transform:none}}
@@ -97,7 +111,7 @@
     /* badges */
     .badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(16,24,40,0.04);font-weight:600}
 
-    /* ======================= NEW BEAUTIFUL MODAL (exactly like your other site) ======================= */
+    /* ======================= NEW BEAUTIFUL MODAL ======================= */
     .ld-modal-backdrop{
       position:fixed; inset:0; background:rgba(12,18,30,0.45); backdrop-filter:blur(6px);
       display:none; align-items:center; justify-content:center; z-index:9999; padding:20px;
@@ -152,8 +166,7 @@
         <a class="btn-ghost open-modal" href="#">Sample</a>
         <a class="btn-ghost" href="#how">How it works</a>
         <a class="btn" href="#buy">Get your scorecard</a>
-        <a class="btn-ghost" href="#how">About</a>
-        <a class="btn-ghost" href="#how">Contact</a>
+        <a class="btn-ghost" href="about_contact.html">About & Contact</a>
       </nav>
     </header>
 
@@ -206,7 +219,6 @@
       </aside>
     </section>
 
-    <!-- FEATURES -->
     <section>
       <div class="features">
         <div class="feature fade-up">
@@ -224,7 +236,6 @@
       </div>
     </section>
 
-    <!-- SAMPLE REPORT -->
     <section id="sample" class="sample fade-up">
       <div class="report-preview">
         <a href="#" class="open-modal preview-link">
@@ -252,10 +263,6 @@
       </div>
     </section>
 
-    <!-- COMPARISON, PRICING, TESTIMONIALS, FAQ, FOOTER (unchanged) -->
-    <!-- ... [all your existing sections exactly as before] ... -->
-
-    <!-- COMPARISON -->
     <section class="comparison fade-up" id="how">
       <h3 style="margin-top:0">Compatibility Reports vs LagnaDuo</h3>
       <table>
@@ -272,7 +279,6 @@
       </table>
     </section>
 
-    <!-- PRICING -->
     <section id="buy" class="pricing fade-up">
       <div class="price-card">
         <div class="small">Digital Instant Delivery</div>
@@ -294,7 +300,6 @@
       <div style="margin-top:12px;font-size:13px;color:var(--muted)">Note: Click the Buy button to complete the secure checkout. After purchase, you’ll receive the PDF and instructions by email. For any issues, contact us at <a href="mailto:info@astrologyofbharat.org">info@astrologyofbharat.org</a>.</div>
     </section>
 
-    <!-- TESTIMONIALS -->
     <section class="fade-up">
       <h3>What readers say</h3>
       <div class="testimonials">
@@ -313,7 +318,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="faq fade-up">
       <h3>Frequently asked questions</h3>
       <div class="faq-item">
@@ -337,12 +341,11 @@
     <footer>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
         <div class="small">© Astrology of Bharat • LagnaDuo • All rights reserved</div>
-        <div class="small">Made with care — <a href="/p/contact.html">Contact us</a></div>
+        <div class="small">Made with care — <a href="about_contact.html">Contact us</a></div>
       </div>
     </footer>
   </div>
 
-  <!-- NEW BEAUTIFUL MODAL -->
   <div id="ld-modal-backdrop" class="ld-modal-backdrop">
     <div class="ld-modal">
       <div class="modal-header">
