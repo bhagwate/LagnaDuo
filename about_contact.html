@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About & Contact — LagnaDuo</title>
+  <meta name="description" content="About Astrology of Bharat and Contact information for LagnaDuo." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Identical styles to index.html to maintain look and feel */
+    :root{
+      --bg: #fcfbf9;
+      --card: #ffffff;
+      --accent: #7c5cff;
+      --accent-2: #f59e0b;
+      --muted: #6b7280;
+      --text: #0f172a;
+      --shadow: 0 8px 30px rgba(16,24,40,0.06);
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,var(--bg),#fbf7ff);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+    }
+    .container{max-width:var(--max-width);padding:28px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:10px 0; margin-bottom: 20px;}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#b794f4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:Merriweather}
+    .site-title{font-weight:700;font-family:Merriweather}
+    .nav{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:var(--shadow);border:0}
+    .btn-ghost{background:transparent;border:1px solid rgba(16,24,40,0.06);padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:500}
+    .small{font-size:13px;color:var(--muted)}
+    
+    /* Layout for About/Contact Page */
+    .page-grid {
+      display: grid;
+      /* 68% for content, remaining for sidebar/contact */
+      grid-template-columns: 68% 1fr; 
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    /* Typography */
+    h1, h2, h3 { font-family: Merriweather; color: var(--text); }
+    h1 { margin-bottom: 10px; }
+    h2 { font-size: 22px; margin-top: 30px; margin-bottom: 12px; color: var(--accent); }
+    p { margin-bottom: 16px; color: #334155; }
+    
+    /* Contact Form Styling */
+    .contact-card {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 20px;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(15,23,42,0.1);
+      font-family: inherit;
+    }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .submit-btn {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+
+    footer{padding:28px 0;color:var(--muted);font-size:14px; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px;}
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .page-grid { grid-template-columns: 1fr; }
+      .contact-card { position: static; margin-top: 30px; }
+    }
+    @media (max-width: 720px) {
+      header { padding: 8px 0; }
+      .nav { display: none; }
+    }
+    
+    /* Animation */
+    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <a href="index.html" style="text-decoration:none; display:flex; gap:12px; align-items:center; color:inherit;">
+          <div class="logo">LB</div>
+          <div>
+            <div class="site-title">Astrology of Bharat</div>
+            <div class="small">LagnaDuo — Shared Future Scorecard</div>
+          </div>
+        </a>
+      </div>
+      <nav class="nav">
+        <a class="btn-ghost" href="index.html">Home</a>
+        <a class="btn-ghost" href="index.html#how">How it works</a>
+        <a class="btn" href="index.html#buy">Get your scorecard</a>
+        <a class="btn-ghost" href="about_contact.html">About & Contact</a>
+      </nav>
+    </header>
+
+    <div class="page-grid fade-up">
+      
+      <section class="about-content">
+        <h1>About Us</h1>
+        <p class="small" style="margin-bottom: 24px;">Understanding destiny, one chart at a time.</p>
+        
+        <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.06); margin-bottom: 30px;">
+
+        <h2>About the Author</h2>
+        <p>
+          Welcome to Astrology of Bharat. I am a dedicated practitioner of Vedic Astrology (Jyotish Shastra), focused on deciphering the cosmic codes that influence human life. My journey began with a deep curiosity about the intersection of karma, free will, and planetary influences. Over the years, I have studied ancient texts and applied these timeless principles to modern living.
+        </p>
+        <p>
+          My approach is rooted in the belief that astrology is not just about prediction, but about preparation. By understanding the energetic patterns of our birth charts, we can make more informed decisions, navigate challenges with grace, and maximize our potential. I strive to provide readings that are honest, practical, and devoid of fear-mongering.
+        </p>
+        <p>
+          Through this platform, I aim to share knowledge, offer guidance, and help you connect with your own cosmic rhythm.
+        </p>
+
+        <h2>About LagnaDuo<sup>TM</sup></h2>
+        <p>
+          LagnaDuo<sup>TM</sup> was born out of a specific need I observed in my practice. Traditional compatibility matching (Guna Milan) often addresses the psychological or spiritual affinity between two people, but it frequently misses the practical, gritty reality of <em>living together</em>.
+        </p>
+        <p>
+          I realized that many couples who were "compatible" on paper still struggled with the daily mechanics of a shared life—waking times, chore preferences, financial habits, and spatial needs.
+        </p>
+        <p>
+          LagnaDuo<sup>TM</sup> is a specialized scorecard designed to bridge this gap. It utilizes a unique algorithm based on the Ascendant (Lagna) and house superimposition to predict the harmony of a shared environment. It answers the question: <em>"Can we live in the same house without driving each other crazy?"</em> It is a tool for the modern couple who wants to build a home that is not just loving, but peaceful.
+        </p>
+      </section>
+
+      <aside class="contact-section">
+        <div class="contact-card">
+          <h3 style="margin-top:0">Contact Us</h3>
+          <p class="small">Have a question or need support? Fill out the form below.</p>
+          
+          <form class="leadform-vertical" action="YOUR_GOOGLE_SCRIPT_URL_HERE" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+          
+          <div style="margin-top: 20px; font-size: 13px; color: var(--muted); text-align: center;">
+            Or email directly:<br>
+            <a href="mailto:info@astrologyofbharat.org" style="color:var(--accent); text-decoration:none;">info@astrologyofbharat.org</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div class="small">© Astrology of Bharat • LagnaDuo • All rights reserved</div>
+        <div class="small">Made with care — <a href="index.html" style="color:inherit; text-decoration: underline;">Home</a></div>
+      </div>
+    </footer>
+  </div>
+  
+  <script>
+    // Simple intersection observer for the fade-up effect
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add('fade-up');
+      });
+    },{threshold:0.08});
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
