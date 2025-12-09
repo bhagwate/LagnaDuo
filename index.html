@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" /> 
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LagnaDuo — Shared Future Scorecard</title>
   <meta name="description" content="LagnaDuo: A modern Vedic astrology scorecard that reveals whether two people can truly live together — beyond compatibility." />
@@ -507,38 +507,7 @@
   "description": "A 250-point relationship scorecard called LagnaDuo which reveals actual living together potential, showing if two people will or can live together."
   }
 </script>
-<script>
-// HOW IT WORKS POPUP
-const howPopup = document.getElementById('how-popup-backdrop');
-const howLinks = document.querySelectorAll('.open-how-popup');
-const howCloseBtns = document.querySelectorAll('.how-close');
 
-// Open
-howLinks.forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    howPopup.classList.add('show');
-    document.body.style.overflow = 'hidden';
-  });
-});
-
-// Close buttons
-howCloseBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    howPopup.classList.remove('show');
-    document.body.style.overflow = '';
-  });
-});
-
-// Click outside to close
-howPopup.addEventListener('click', e => {
-  if (e.target === howPopup) {
-    howPopup.classList.remove('show');
-    document.body.style.overflow = '';
-  }
-});
-
-</script>
 <div id="how-popup-backdrop" class="ld-modal-backdrop">
   <div class="ld-modal">
     <div class="modal-header">
@@ -572,5 +541,37 @@ howPopup.addEventListener('click', e => {
     </div>
   </div>
 </div>
+<script>
+// HOW IT WORKS POPUP
+const howPopup = document.getElementById('how-popup-backdrop');
+const howLinks = document.querySelectorAll('.open-how-popup');
+const howCloseBtns = document.querySelectorAll('.how-close');
+
+// Open
+howLinks.forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    howPopup.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// Close buttons
+howCloseBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    howPopup.classList.remove('show');
+    document.body.style.overflow = '';
+  });
+});
+
+// Click outside to close
+howPopup.addEventListener('click', e => {
+  if (e.target === howPopup) {
+    howPopup.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
+</script>
 </body>
 </html>
