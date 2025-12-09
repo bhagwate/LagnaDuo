@@ -171,7 +171,7 @@
       </div>
       <nav class="nav">
         <a class="btn-ghost open-modal" href="#">Sample</a>
-        <a class="btn-ghost" href="#how">How it works</a>
+        <a class="btn-ghost open-how-popup" href="#">How it works</a>
         <a class="btn" href="#buy">Get your scorecard</a>
         <a class="btn-ghost" href="about_contact.html">About & Contact</a>
       </nav>
@@ -507,5 +507,70 @@
   "description": "A 250-point relationship scorecard called LagnaDuo which reveals actual living together potential, showing if two people will or can live together."
   }
 </script>
+<script>
+// HOW IT WORKS POPUP
+const howPopup = document.getElementById('how-popup-backdrop');
+const howLinks = document.querySelectorAll('.open-how-popup');
+const howCloseBtns = document.querySelectorAll('.how-close');
+
+// Open
+howLinks.forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    howPopup.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// Close buttons
+howCloseBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    howPopup.classList.remove('show');
+    document.body.style.overflow = '';
+  });
+});
+
+// Click outside to close
+howPopup.addEventListener('click', e => {
+  if (e.target === howPopup) {
+    howPopup.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+});
+
+</script>
+<div id="how-popup-backdrop" class="ld-modal-backdrop">
+  <div class="ld-modal">
+    <div class="modal-header">
+      <h3>How LagnaDuo Works</h3>
+      <button class="btn-ghost how-close" style="background:#7c5cff;color:#fff;border:0;padding:6px 14px;border-radius:8px;">
+        Close
+      </button>
+    </div>
+
+    <div class="modal-body" style="text-align:left; font-size:15px; line-height:1.55;">
+      <p>
+        LagnaDuo calculates the <strong>Shared Future Score</strong> (0–250) based on 
+        Vedic astrology principles that measure:
+      </p>
+      <ul style="margin-top:10px;">
+        <li>Daily living harmony</li>
+        <li>Space–time compatibility</li>
+        <li>Destiny alignment between partners</li>
+        <li>How two charts behave when living together</li>
+      </ul>
+
+      <p style="margin-top:12px;">
+        Unlike compatibility scores that measure attraction, LagnaDuo measures the 
+        <strong>practical, real-life chemistry of living under one roof</strong>—the true 
+        indicator of long-term stability.
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="how-close">Close</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
